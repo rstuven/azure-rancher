@@ -46,8 +46,8 @@
   "variables": {
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
-    "OSDiskName": "osdiskfordockersimple",
 	"ubuntuOSVersion": "15.04",
+    "OSDiskName": "osdiskfordockersimple",
     "nicName": "myVMNic",
     "extensionName": "DockerExtension",
     "addressPrefix": "10.0.0.0/16",
@@ -154,7 +154,7 @@
           "imageReference": {
             "publisher": "[variables('imagePublisher')]",
             "offer": "[variables('imageOffer')]",
-            "sku": "[parameters('ubuntuOSVersion')]",
+            "sku": "[variables('ubuntuOSVersion')]",
             "version": "latest"
           },
           "osDisk": {
