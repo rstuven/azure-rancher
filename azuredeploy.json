@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.1",
+  "contentVersion": "1.0.0.2",
   "parameters": {
     "newStorageAccountName": {
       "type": "string",
@@ -196,7 +196,7 @@
             "rancheragent": {
               "image": "rancher/agent:v0.8.2",
               "restart": "always",
-			  "privileged": "true",
+			  "privileged": true,
 			  "volumes": [
                 "/var/run/docker.sock:/var/run/docker.sock"
               ],
