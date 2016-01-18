@@ -5,9 +5,6 @@
     "newStorageAccountName": {
       "value": "unqiueStorageAccount"
     },
-    "location": {
-      "value": "West Europe"
-    },
     "adminUsername": {
       "value": "userName"
     },
@@ -21,7 +18,7 @@
       "value": "http://myrancherhost.kvaes.be:8080/v1/scripts/AA12A123A1A1234A12A1:1234567890000:aAaaaaA1AaAaAlaAAaaaaAAAaaA"
     },
 	"rancherNodeName": {
-      "value": "ranchernode"
+      "value": "cattle"
       }
     },
 	"rancherCount": {
