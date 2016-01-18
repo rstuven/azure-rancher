@@ -35,6 +35,12 @@
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
+    },
+	"rancherApi": {
+      "type": "string",
+      "metadata": {
+        "description": "The api link to your RancherHost. Example : http://myrancherhost.kvaes.be:8080/v1/scripts/AA12A123A1A1234A12A1:1234567890000:aAaaaaA1AaAaAlaAAaaaaAAAaaA"
+      }
     }
   },
   "variables": {
@@ -182,7 +188,22 @@
         "type": "DockerExtension",
         "typeHandlerVersion": "1.0",
         "autoUpgradeMinorVersion": true,
-        "settings": {}
+        "settings": {
+          "docker": {
+            "port": "2375"
+          },
+          "compose": {
+            "rancheragent": {
+              "image": "rancher/agent:v0.8.2",
+              "restart": "always",
+			  "privileged": "true",
+			  "volumes": [
+                "/var/run/docker.sock:/var/run/docker.sock"
+              ],
+              "command": "[parameters('rancherApi')]"
+            }
+          }
+        }
       }
     }
   ]
