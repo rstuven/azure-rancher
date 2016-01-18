@@ -23,6 +23,9 @@
 	"rancherNodeName": {
       "value": "ranchernode"
       }
-    }
+    },
+	"rancherCount": {
+	  "value": 4
+	}
   }
 }
