@@ -16,6 +16,9 @@
     },
     "dnsNameForPublicIP": {
       "value": "uniqueDNS"
+    },
+	"rancherApi": {
+      "value": "http://myrancherhost.kvaes.be:8080/v1/scripts/AA12A123A1A1234A12A1:1234567890000:aAaaaaA1AaAaAlaAAaaaaAAAaaA"
     }
   }
 }
