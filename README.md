@@ -1,6 +1,6 @@
 # Rancher Nodes
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fbitbucket.org%2Fkvaes%2Fazure-rancher%2Fraw%2F58b14a078e4b86fd89b2fe7fa9e1ea76f7a5e487%2Fazuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fbitbucket.org%2Fkvaes%2Fazure-rancher%2Fraw%2F7fa46a3708eb5c8a7aa3c34d8120e62c2e5c78a7%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
