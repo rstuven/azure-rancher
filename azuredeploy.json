@@ -159,7 +159,7 @@
           "vmSize": "[variables('vmSize')]"
         },
         "osProfile": {
-          "computerName": "[parameters('rancherNodeName')]",
+          "computerName": "[concat(parameters('rancherNodeName'), copyIndex())]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]"
         },
