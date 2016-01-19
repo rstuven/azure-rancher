@@ -1,28 +1,21 @@
 {
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "newStorageAccountName": {
-      "value": "unqiueStorageAccount"
-    },
+  "contentVersion": "1.0.0.6",
+    "parameters": {
     "adminUsername": {
-      "value": "userName"
+      "type": "username"
     },
     "adminPassword": {
       "value": "password"
     },
-    "dnsNameForPublicIP": {
-      "value": "uniqueDNS"
-    },
-	"rancherApi": {
-      "value": "http://myrancherhost.kvaes.be:8080/v1/scripts/AA12A123A1A1234A12A1:1234567890000:aAaaaaA1AaAaAlaAAaaaaAAAaaA"
+    "rancherApi": {
+      "value": "http://rancherdemo.westeurope.cloudapp.azure.com:8080/v1/scripts/AB970B2A9C671729DEE1:1453237200000:B9EyW2QMTXPzjWeSz6wljmz7mEM",
     },
 	"rancherNodeName": {
-      "value": "cattle"
-      }
+      "value": "rancherhost"
     },
 	"rancherCount": {
-	  "value": 4
-	}
-  }
+      "value": 4
+    }
+  },
 }
