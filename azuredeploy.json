@@ -20,13 +20,7 @@
         "description": "Password for the Virtual Machine."
       }
     },
-    "dnsNameForPublicIP": {
-      "type": "string",
-      "metadata": {
-        "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
-      }
-    },
-	"rancherApi": {
+    "rancherApi": {
       "type": "string",
       "metadata": {
         "description": "The api link to your RancherHost. Example : http://myrancherhost.kvaes.be:8080/v1/scripts/AA12A123A1A1234A12A1:1234567890000:aAaaaaA1AaAaAlaAAaaaaAAAaaA"
@@ -49,16 +43,14 @@
     "availabilitySet": "rancherhosts",
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
-	"ubuntuOSVersion": "15.04",
+    "ubuntuOSVersion": "15.04",
     "OSDiskName": "rancherosdisk",
     "nicName": "ranchernic",
     "virtualNetworkName": "ranchernetwork",
-	"addressPrefix": "10.0.0.0/16",
+    "addressPrefix": "10.0.0.0/16",
     "subnetName": "rancherhosts",
     "subnetPrefix": "10.0.0.0/24",
-    "publicIPAddressName": "myPublicIP",
-    "publicIPAddressType": "Dynamic",
-	"storageAccountType": "Standard_LRS",
+    "storageAccountType": "Standard_LRS",
     "vmStorageAccountContainerName": "vhds",
     "vmSize": "Standard_D1",
 	"extensionName": "DockerExtension",
@@ -84,18 +76,6 @@
     },
     {
       "apiVersion": "2015-06-15",
-      "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[variables('publicIPAddressName')]",
-      "location": "[resourceGroup().location]",
-      "properties": {
-        "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
-        "dnsSettings": {
-          "domainNameLabel": "[parameters('dnsNameForPublicIP')]"
-        }
-      }
-    },
-    {
-      "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/virtualNetworks",
       "name": "[variables('virtualNetworkName')]",
       "location": "[resourceGroup().location]",
@@ -103,6 +83,12 @@
         "addressSpace": {
           "addressPrefixes": [
             "[variables('addressPrefix')]"
+          ]
+        },
+        "dhcpOptions": {
+          "dnsServers": [
+            "208.67.222.222",
+            "208.67.220.220"
           ]
         },
         "subnets": [
