@@ -35,20 +35,21 @@
   },
   "variables": {
     "apiVersion": "2015-05-01-preview",  
-    "availabilitySet": "rancherhosts",
-    "networkSecurityGroupName": "rancherhosts",
+    "availabilitySet": "[parameters('rancherNodeName')]",
+    "storageAccountName": "[parameters('rancherNodeName')]",
+    "networkSecurityGroupName": "[parameters('rancherNodeName')]",
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
     "ubuntuOSVersion": "15.04",
     "OSDiskName": "rancherosdisk",
     "nicName": "ranchernic",
-    "virtualNetworkName": "ranchernetwork",
-    "addressPrefix": "10.0.0.0/16",
-    "subnetName": "rancherhosts",
-    "subnetPrefix": "10.0.0.0/24",
+    "virtualNetworkName": "[parameters('rancherNodeName')]",
+    "addressPrefix": "192.168.0.0/16",
+    "subnetName": "[parameters('rancherNodeName')]",
+    "subnetPrefix": "192.168.254.0/24",
     "storageAccountType": "Standard_LRS",
     "vmStorageAccountContainerName": "vhds",
-    "vmSize": "Standard_D1",
+    "vmSize": "Standard_A1",
     "extensionName": "DockerExtension",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
@@ -56,7 +57,7 @@
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "name": "[parameters('rancherNodeName')]",
+      "name": "[variables('storageAccountName')]",
       "apiVersion": "[variables('apiVersion')]",
       "location": "[resourceGroup().location]",
       "properties": {
@@ -196,7 +197,7 @@
         "count": "[parameters('rancherCount')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Storage/storageAccounts/', parameters('rancherNodeName'))]",
+        "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
         "[concat('Microsoft.Network/networkInterfaces/', parameters('rancherNodeName'), copyIndex(), '-nic')]"
       ],
       "properties": {
@@ -218,7 +219,7 @@
           "osDisk": {
 			"name": "[concat(parameters('rancherNodeName'), copyIndex(),'-osdisk')]",
             "vhd": {
-              "uri": "[concat('http://',parameters('rancherNodeName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',parameters('rancherNodeName'), copyIndex(),'-osdisk','.vhd')]"
+              "uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',parameters('rancherNodeName'), copyIndex(),'-osdisk','.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
