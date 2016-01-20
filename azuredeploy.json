@@ -163,6 +163,22 @@
     },
     {
       "apiVersion": "[variables('apiVersion')]",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[concat(parameters('rancherNodeName', copyIndex(), '-nic'))]",
+      "location": "[resourceGroup().location]",
+      "copy": {
+        "name": "nicLoopNode",
+        "count": "[parameters('rancherCount')]"
+      },
+      "properties": {
+        "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
+        "dnsSettings": {
+          "domainNameLabel": "[parameters('dnsNameForPublicIP')]"
+        }
+      }
+    },
+    {
+      "apiVersion": "[variables('apiVersion')]",
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[concat(parameters('rancherNodeName'), copyIndex(), '-nic')]",
       "location": "[resourceGroup().location]",
@@ -171,7 +187,8 @@
         "count": "[parameters('rancherCount')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
+         "[concat('Microsoft.Network/publicIPAddresses/', parameters('rancherNodeName', copyIndex(), '-nic'))]",
       ],
       "properties": {
         "ipConfigurations": [
