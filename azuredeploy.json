@@ -164,10 +164,10 @@
     {
       "apiVersion": "[variables('apiVersion')]",
       "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[concat(parameters('rancherNodeName', copyIndex()))]",
+      "name": "[concat(parameters('rancherNodeName'), copyIndex())]",
       "location": "[resourceGroup().location]",
       "copy": {
-        "name": "nicLoopNode",
+        "name": "pipLoopNode",
         "count": "[parameters('rancherCount')]"
       },
       "properties": {
