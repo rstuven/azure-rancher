@@ -198,7 +198,7 @@
             "properties": {
               "privateIPAllocationMethod": "Dynamic",
               "publicIPAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('rancherNodeName'), copyIndex())]"
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('rancherNodeName'), copyIndex()))]"
               },
               "subnet": {
                 "id": "[variables('subnetRef')]"
