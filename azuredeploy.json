@@ -173,7 +173,7 @@
       "properties": {
         "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
         "dnsSettings": {
-          "domainNameLabel": "[parameters('dnsNameForPublicIP')]"
+          "domainNameLabel": "[concat(parameters('rancherNodeName'), copyIndex())]"
         }
       }
     },
@@ -187,8 +187,8 @@
         "count": "[parameters('rancherCount')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
-        "[concat('Microsoft.Network/publicIPAddresses/', parameters('rancherNodeName'), copyIndex())]"
+        "[concat('Microsoft.Network/publicIPAddresses/', parameters('rancherNodeName'), copyIndex())]",
+        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
       ],
       "properties": {
         "ipConfigurations": [
@@ -196,6 +196,9 @@
             "name": "ipconfig1",
             "properties": {
               "privateIPAllocationMethod": "Dynamic",
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('rancherNodeName'), copyIndex())]"
+              },
               "subnet": {
                 "id": "[variables('subnetRef')]"
               }
