@@ -47,6 +47,7 @@
     "addressPrefix": "192.168.0.0/16",
     "subnetName": "[parameters('rancherNodeName')]",
     "subnetPrefix": "192.168.254.0/24",
+    "publicIPAddressType": "Dynamic",
     "storageAccountType": "Standard_LRS",
     "vmStorageAccountContainerName": "vhds",
     "vmSize": "Standard_A1",
