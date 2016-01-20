@@ -188,7 +188,7 @@
       },
       "dependsOn": [
         "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
-        "[concat('Microsoft.Network/publicIPAddresses/', parameters('rancherNodeName', copyIndex()))]"
+        "[concat('Microsoft.Network/publicIPAddresses/', parameters('rancherNodeName'), copyIndex())]"
       ],
       "properties": {
         "ipConfigurations": [
