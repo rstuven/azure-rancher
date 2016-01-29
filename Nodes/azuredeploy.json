@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.6",
+  "contentVersion": "1.0.0.0",
   "parameters": {
     "adminUsername": {
       "type": "string",
@@ -44,9 +44,9 @@
     "OSDiskName": "rancherosdisk",
     "nicName": "ranchernic",
     "virtualNetworkName": "[parameters('rancherNodeName')]",
-    "addressPrefix": "192.168.0.0/16",
+    "addressPrefix": "192.168.253.0/24",
     "subnetName": "[parameters('rancherNodeName')]",
-    "subnetPrefix": "192.168.254.0/24",
+    "subnetPrefix": "192.168.253.0/24",
     "publicIPAddressType": "Dynamic",
     "storageAccountType": "Standard_LRS",
     "vmStorageAccountContainerName": "vhds",
@@ -80,6 +80,21 @@
       "location": "[resourceGroup().location]",
       "properties": {
         "securityRules": [
+		  {
+            "name": "SSH",
+            "properties": {
+              "description": "SSH",
+              "protocol": "Udp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "22",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 100,
+              "direction": "Inbound"
+            }
+          },
+		  
           {
             "name": "rVPN500",
             "properties": {
@@ -90,7 +105,7 @@
               "sourceAddressPrefix": "*",
               "destinationAddressPrefix": "*",
               "access": "Allow",
-              "priority": 100,
+              "priority": 300,
               "direction": "Inbound"
             }
           },
@@ -105,7 +120,7 @@
               "sourceAddressPrefix": "*",
               "destinationAddressPrefix": "*",
               "access": "Allow",
-              "priority": 200,
+              "priority": 400,
               "direction": "Inbound"
             }
           },
@@ -141,12 +156,6 @@
         "addressSpace": {
           "addressPrefixes": [
             "[variables('addressPrefix')]"
-          ]
-        },
-        "dhcpOptions": {
-          "dnsServers": [
-            "208.67.222.222",
-            "208.67.220.220"
           ]
         },
         "subnets": [

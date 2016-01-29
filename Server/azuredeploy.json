@@ -33,13 +33,13 @@
     "OSDiskName": "rancherosdisk",
     "nicName": "ranchernic",
     "virtualNetworkName": "[parameters('rancherNodeName')]",
-    "addressPrefix": "192.168.0.0/16",
+    "addressPrefix": "192.168.254.0/24",
     "subnetName": "[parameters('rancherNodeName')]",
     "subnetPrefix": "192.168.254.0/24",
     "publicIPAddressType": "Dynamic",
     "storageAccountType": "Standard_LRS",
     "vmStorageAccountContainerName": "vhds",
-    "vmSize": "Standard_A1",
+    "vmSize": "Standard_A2",
     "extensionName": "DockerExtension",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
@@ -69,6 +69,21 @@
       "location": "[resourceGroup().location]",
       "properties": {
         "securityRules": [
+		  {
+            "name": "SSH",
+            "properties": {
+              "description": "SSH",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "22",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 100,
+              "direction": "Inbound"
+            }
+          },
+		  
           {
             "name": "Rancher",
             "properties": {
@@ -79,7 +94,7 @@
               "sourceAddressPrefix": "*",
               "destinationAddressPrefix": "*",
               "access": "Allow",
-              "priority": 100,
+              "priority": 300,
               "direction": "Inbound"
             }
           },
@@ -94,7 +109,7 @@
               "sourceAddressPrefix": "*",
               "destinationAddressPrefix": "*",
               "access": "Allow",
-              "priority": 300,
+              "priority": 200,
               "direction": "Inbound"
             }
           }
@@ -115,12 +130,6 @@
         "addressSpace": {
           "addressPrefixes": [
             "[variables('addressPrefix')]"
-          ]
-        },
-        "dhcpOptions": {
-          "dnsServers": [
-            "208.67.222.222",
-            "208.67.220.220"
           ]
         },
         "subnets": [
