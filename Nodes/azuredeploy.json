@@ -103,7 +103,7 @@
     "networkSecurityGroupName": "[parameters('rancherNodeName')]",
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
-    "ubuntuOSVersion": "15.04",
+    "ubuntuOSVersion": "14.04.2-LTS",
     "OSDiskName": "rancherosdisk",
     "nicName": "ranchernic",
     "virtualNetworkName": "[parameters('rancherNodeName')]",
