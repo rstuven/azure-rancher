@@ -106,11 +106,11 @@
     "ubuntuOSVersion": "14.04.2-LTS",
     "OSDiskName": "rancherosdisk",
     "nicName": "ranchernic",
-    "virtualNetworkName": "[parameters('rancherNodeName')]",
-    "addressPrefix": "192.168.253.0/24",
-    "subnetName": "[parameters('rancherNodeName')]",
-    "subnetPrefix": "192.168.253.0/24",
-    "publicIPAddressType": "Dynamic",
+    "virtualNetworkName": "ETSVNET1",
+    "addressPrefix": "10.12.192.0/18",
+    "subnetName": "TestSubnet1",
+    "subnetPrefix": "10.12.193.0/24",
+    "publicIPAddressType": "None",
     "storageAccountType": "Standard_LRS",
     "vmStorageAccountContainerName": "vhds",
     "vmSize": "[parameters('rancherVmSize')]",
@@ -350,7 +350,7 @@
           },
           "compose": {
             "rancheragent": {
-              "image": "rancher/agent:v0.8.2",
+              "image": "rancher/agent:v1.0.1",
               "restart": "always",
 			  "privileged": true,
 			  "volumes": [

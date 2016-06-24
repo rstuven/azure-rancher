@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "adminUsername": {
+            "value": "luke"
+        },
+        "adminPassword": {
+            "value": "h4rd2gu355"
+        },
+        "rancherApi": {
+            "value": "http://ocs-1232.oc.mckesson.com:8080/v1/scripts/61108FF793365C623F6F:1465470000000:cyayuDRduvSvG4aFbWfKd0XmQ"
+        },
+        "rancherNodeName": {
+            "value": "rancher"
+        },
+        "rancherVmSize": {
+            "value": "Standard_DS2"
+        },
+        "rancherCount": {
+            "value": "3"
+        }
+      }
+   }
+}
