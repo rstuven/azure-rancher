@@ -86,7 +86,7 @@
     "rancherCount": 1,
     "apiVersion": "2015-05-01-preview",  
     "availabilitySet": "[parameters('rancherNodeName')]",
-    "storageAccountName": "[parameters('rancherNodeName')]",
+    "storageAccountName": "[concat(parameters('rancherNodeName'), 'account')]",
     "networkSecurityGroupName": "[parameters('rancherNodeName')]",
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
